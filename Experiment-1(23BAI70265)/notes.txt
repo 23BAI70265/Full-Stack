@@ -1,1 +1,2 @@
 Fragement doesn't create any node in the dom it just attaches to the parent element.
+All JSX inside a custom React component goes to props.children
