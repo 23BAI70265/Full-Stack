@@ -1,35 +1,46 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import  AuthProvider  from "./context/AuthProvider";
+import AuthProvider from "./context/AuthProvider";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import Header from "./components/Header";
-import React from "react";
+import Layout from "./pages/Layout";
+import useAuth from "./hooks/useAuth";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import React from "react" ;
 
-function Dashboard() {
+
+function AppRoutes() {
+  const { user } = useAuth();
+
   return (
-    <div>
-      <Header />
-      <div className="flex items-center justify-center min-h-screen">
-        <h1 className="text-3xl font-bold text-gray-700">Dashboard</h1>
-      </div>
-    </div>
+    <Routes>
+      <Route element = {<Layout/>}>
+        <Route
+        path="/"
+        element={
+          user ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+
+      <Route path="/login" element={<Login />} />
+
+      <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+      </Route>
+      </Route>
+    </Routes>
   );
 }
 
-function App() {
+export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<Header />} />
-
-          <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
-        </Routes>
+        <AppRoutes />
       </BrowserRouter>
     </AuthProvider>
   );
 }
-
-export default App;
