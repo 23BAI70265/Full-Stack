@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 import store from "./store/store"
 import React from "react";
 import Logs from "./data/logs";
+
+
 function AppRoutes() {
   const { user } = useAuth();
 
