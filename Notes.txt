@@ -1,0 +1,24 @@
+Java is not suitable for enterprise level application.
+
+
+Inversion of control :
+pring IoC (Inversion of Control) Container is the core component of the Spring Framework. It is responsible for creating, managing, and configuring application objects (beans). Using Dependency Injection:
+
+Automatically injects required dependencies into beans.
+Manages bean creation, initialization, and destruction.
+Supports XML, annotation-based, and Java-based configuration.
+Separates object creation from business logic, making applications more flexible and testable.
+Types Ioc Containers
+There are two types of IoC containers in Spring:
+
+1. BeanFactory
+BeanFactory is the basic IoC container that provides fundamental features like dependency injection and bean lifecycle management.
+Syntax:
+Resource resource = new ClassPathResource("beans.xml");
+BeanFactory factory = new XmlBeanFactory(resource);
+2. ApplicationContext
+ApplicationContext is an advanced IoC container that extends BeanFactory and provides additional features such as event handling, internationalization, and annotation-based configuration.
+
+Servlet :
+Java Servlet is a Java program that runs on a Java-enabled web server or application server. It handles client requests, processes them and generates responses dynamically. Servlets are the backbone of many server-side Java applications due to their efficiency and scalability.
+
